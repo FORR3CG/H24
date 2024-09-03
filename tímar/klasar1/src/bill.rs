@@ -1,21 +1,21 @@
 use std::fmt::Display;
-
+use crate::litur::Litur;
 
 #[derive(Debug)] // trait
 pub struct Bill {
     pub id: u32,
     pub tegund: String,
     pub argerd: u16,
-    pub litur: String,
+    pub litur: Litur,
 }
 
 impl Bill {
-    pub fn new(id: u32, tegund: &str, argerd: u16, litur: &str) -> Self {
+    pub fn new(id: u32, tegund: &str, argerd: u16, litur: u32) -> Self {
         Self {
             id,
             tegund: tegund.to_string(),
             argerd,
-            litur: litur.to_string(),
+            litur: Litur::from(litur),
         }
     }
 
