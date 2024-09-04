@@ -1,35 +1,40 @@
-use std::fmt::Display;
-use crate::litur::Litur;
+mod bill;
+mod litur;
+mod flokkur;
+use bill::Bill;
+use litur::Litur;
+use flokkur::Flokkur;
 
-#[derive(Debug)] // trait
-pub struct Bill {
-    pub id: u32,
-    pub tegund: String,
-    pub argerd: u16,
-    pub litur: Litur,
-}
+fn main() {
+    let f = Flokkur::Jeppi;
+    //let ff = Flokkur::from("jeppi");
+    let k = f.to_string();
+    println!("{:?}", f);
+    let flokkur_bils = match f {
+        Flokkur::Folksbill => "Fólksbíll",
+        Flokkur::Vorubill => "Vörubíll",
+        _ => "Eitthvað annað",
+    };
 
-impl Bill {
-    pub fn new(id: u32, tegund: &str, argerd: u16, litur: u32) -> Self {
-        Self {
-            id,
-            tegund: tegund.to_string(),
-            argerd,
-            litur: Litur::from(litur),
-        }
-    }
+    // #7f7f7fff, #00ff00ff, #0000ffff
+    let k = std::mem::size_of_val(&0u128);
+    println!("{}", k);
+    let graenn = Litur::new(0, 255, 0, 255);
+    println!("{}", graenn);
+    let nissan = Bill {
+        id: 100,
+        tegund: "Nissan".to_string(),
+        argerd: 2010,
+        //litur: String::from("Grár"),
+        //litur: Litur::new(127, 127,127, 255),
+        litur: Litur::from(0xff0000ff),
+        flokkur: Flokkur::Folksbill, // Flokkur::from("fólksbíll")
+    };
 
-/*     fn prenta(&self) {
-        println!("{}", self.to_string());
-    }
-
-    fn to_string(&self) -> String {
-        format!("Nr.: {}, tegund: {}, litur: {}, árgerð: {}", self.id, self.tegund, self.litur, self.argerd)
-    } */
-}
-
-impl Display for Bill {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Nr.: {}, tegund: {}, litur: {}, árgerð: {}", self.id, self.tegund, self.litur, self.argerd)
-    }
+    println!("{}", nissan.to_string()   );
+    let mut toyota = Bill::new(101, "Toyota", 2010, 
+                                    0xff0000ff, "jeppi");
+    toyota.argerd = 2011;
+    println!("Teg: {}, árg.: {}", nissan.tegund, nissan.argerd);
+    println!("{}", nissan);
 }
