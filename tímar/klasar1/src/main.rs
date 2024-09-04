@@ -6,7 +6,7 @@ use litur::Litur;
 use flokkur::Flokkur;
 
 fn main() {
-    let f = Flokkur::Jeppi;
+/*     let f = Flokkur::Jeppi;
     //let ff = Flokkur::from("jeppi");
     let k = f.to_string();
     println!("{:?}", f);
@@ -14,7 +14,7 @@ fn main() {
         Flokkur::Folksbill => "Fólksbíll",
         Flokkur::Vorubill => "Vörubíll",
         _ => "Eitthvað annað",
-    };
+    }; */
 
     // #7f7f7fff, #00ff00ff, #0000ffff
     let k = std::mem::size_of_val(&0u128);

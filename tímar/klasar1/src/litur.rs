@@ -18,9 +18,9 @@ impl Litur {
         }
     }
 
-    pub fn nafn(&self) -> String {
+/*     pub fn nafn(&self) -> String {
         format!("{}", self.alpha)
-    }
+    } */
 }
 
 impl Display for Litur {
