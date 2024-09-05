@@ -31,7 +31,31 @@ fn teikna_hring(x: i32, y: i32, radius: f64) {
     println!("Teikna hring í {},{} með radius: {}", x, y, radius)
 }
 
+/* enum Option<T> {
+    None,
+    Some(T),
+} */
+
+fn deila(a: i32, b: i32) -> Option<i32> {
+    if b == 0 {
+       None 
+    } else {
+        let d = a / b;
+        Some(d)
+    }
+}
+
 fn main() {
+    let x = 10;
+    let y = 0;
+    let utkoma = deila(x, y);
+    match utkoma {
+        Some(x) => println!("Deilingin skilaði {}", x),
+        None => println!("Ekki hægt að deila með núll!"),
+    }
+
+    println!("Deili {}/{} = {:?}", x, y, utkoma);
+
     //use Teikniform::{Punktur, Lina, Kassi, Hringur};
     let p = Teikniform::Punktur(Point {x: 10, y: 20});
     let l = Teikniform::Lina { p1: Point::new(20, 30), p2: Point::new(40, 30) };
