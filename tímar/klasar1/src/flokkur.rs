@@ -2,10 +2,10 @@ use std::fmt::Display;
 
 #[derive(Debug)]
 pub enum Flokkur {
-    Folksbill,
-    Jeppi,
-    Vorubill,
-    Annad,
+    Folksbill, // 0
+    Jeppi, // 1
+    Vorubill, // 2
+    Annad, // 3
 }
 
 impl Display for Flokkur {

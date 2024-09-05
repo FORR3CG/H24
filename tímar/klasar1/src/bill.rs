@@ -21,10 +21,14 @@ impl Bill {
         }
     }
 
-/*     fn prenta(&self) {
-        println!("{}", self.to_string());
+    pub fn breyta_flokk(&mut self, flokkur: &str) {
+        self.flokkur = Flokkur::from(flokkur)
     }
 
+    fn prenta(&self) {
+        println!("{}", self.to_string());
+    }
+/* 
     fn to_string(&self) -> String {
         format!("Nr.: {}, tegund: {}, litur: {}, árgerð: {}", self.id, self.tegund, self.litur, self.argerd)
     } */
