@@ -26,7 +26,7 @@ Dæmi um notkun:
     println!("{}", h202);
     // Stærð: 15.91 fm., tegund: Tegund: Kennslustofa, Tölva: Engin tölva
     h202.breyta_staerd(6.1, 5.3);
-    h202.skipta_um_tolvu(Some(Tolva::new(1000, 16, "arm")));
+    h202.skipta_um_tolvu(Some(Tolva::new(1000, 16, CPU::Risc)));
     println!("{}", h202);
     // Stærð: 32.33 fm., tegund: Tegund: Kennslustofa, Tölva: HDD: 1000 GB, RAM 16 GB, CPU: RISC
 ```
