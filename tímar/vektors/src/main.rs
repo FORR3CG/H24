@@ -1,14 +1,25 @@
 
 //fn tveir_eins(listinn: &Vec<i32>) -> bool {
-fn tveir_eins(listinn: &[i32]) -> bool {
+fn tveir_eins(listinn: &[i32]) -> Option<i32> {
     // fara í gegnum listann með Windows og 
     // skila true ef einhversstaðar eru tvær
     // eins tölur í röð
+    for l in listinn.windows(2) {
+        if l.first() == l.last() {
+            //return Some(*l.first().unwrap());
+            match l.first() {
+                Some(tala) => return Some(*tala),
+                None => continue,
+            }
+        }
+    }
+    None
 }
 
 fn main() {
     let mut tomur_listi: Vec<u32> = Vec::new();
-    let mut listi = vec![1,2,3,4,5,6];
+    let mut listi = vec![1,2,3,4,5,6,7];
+    println!("{:?}", tveir_eins(&listi));
     listi.push(7); // LIFO -> 
     let item = listi.pop();
     let fyrsta_stakid = listi.remove(0);
@@ -27,10 +38,11 @@ fn main() {
     for l in listi.chunks(3) {
         println!("{:?}", l);
     }
-
-    for l in listi.windows(2) {
+    println!("windows start");
+    for l in listi.windows(4) {
         println!("{:?}", l);
     }
+    println!("windows end");
 
 
     println!("{:?}", listi);
