@@ -19,6 +19,8 @@ fn tveir_eins(listinn: &[i32]) -> Option<i32> {
 fn main() {
     let mut tomur_listi: Vec<u32> = Vec::new();
     let mut listi = vec![1,2,3,4,5,6,7];
+    listi[2] = 99;
+    listi.get(2).replace(&55);
     println!("{:?}", tveir_eins(&listi));
     listi.push(7); // LIFO -> 
     let item = listi.pop();
@@ -45,5 +47,7 @@ fn main() {
     println!("windows end");
 
 
+    println!("{:?}", listi);
+    listi.sort();
     println!("{:?}", listi);
 }
