@@ -33,3 +33,5 @@ fn main() {
     // id: 100, nafn: Gráni, aldur: 15, staða: Óþekkt
 }
 ```
+
+[Lausn á verkefninu](https://github.com/FORR3CG/H24/tree/main/verkefni/Æfingaverkefni/lausn_klasar_enum)
