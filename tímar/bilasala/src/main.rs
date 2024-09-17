@@ -80,6 +80,12 @@ impl Bilasala {
         let b = Bill::new(self.next_id(), framleidandi, Gerd::from(gerd), verd);
         self.bilar.push(b);
     }
+
+    fn prenta(&self, gerd: Gerd) {
+        for bill in &self.bilar {
+            
+        }
+    }
 }
 
 impl Display for Bilasala {
@@ -123,6 +129,7 @@ fn main() {
                             Err(_) => {
                                 println!("Gat ekki breytt {} í tölu!", skipanir[3]);
                                 continue;
+                                //panic!("Þú slóst inn bókstafi í stað tölustafa!!!!");
                             },
                         };
                         bs.skra(framleidandi, gerd, verd);
