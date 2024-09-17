@@ -98,6 +98,49 @@ fn main() {
     bs.skra2("Volvo", "fb", 200000);
     
     loop {
-        
+        print!("Sláðu inn skipun: ");
+        stdout().flush().unwrap();
+        let mut inntak = String::new();
+        stdin().read_line(&mut inntak).unwrap();
+        let skipanir = inntak.split_whitespace().collect::<Vec<&str>>();
+        //let skipanir = inntak.split(' ').collect::<Vec<&str>>();
+        println!("{:?}", skipanir);
+
+        match skipanir.first() { // .get(4) í stað [4]
+            Some(s) => {
+                match s.to_lowercase().as_str() {
+                    "hætta" => break,
+                    "hjálp" => println!("skrifum út hjálpina"),
+                    "skrá" => {
+                        if skipanir.len() != 4 {
+                            println!("skrá línana inniheldur ekki réttan fjölda orða!");
+                            continue;
+                        }
+                        let framleidandi = skipanir[1];
+                        let gerd = skipanir[2];
+                        let verd = match skipanir[3].parse::<u32>() {
+                            Ok(tala) => tala,
+                            Err(_) => {
+                                println!("Gat ekki breytt {} í tölu!", skipanir[3]);
+                                continue;
+                            },
+                        };
+                        bs.skra(framleidandi, gerd, verd);
+                    },
+                    "prenta" => {
+                        println!("{}", bs);
+                    },
+                    _ => {
+                        println!("skildi ekki skipunina: {}", s);
+                        continue;
+                    }
+                }
+            },
+            None => {
+                println!("Þú verður að slá eitthvað inn!");
+                continue;
+            },
+        }
+
     }
 }
