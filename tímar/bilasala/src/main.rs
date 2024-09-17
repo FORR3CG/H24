@@ -1,6 +1,7 @@
 use std::fmt::Display;
 use std::io::{stdin, stdout, Write};
 
+#[derive(PartialEq)]
 enum Gerd {
     Folksbill,
     Jeppi,
@@ -81,10 +82,28 @@ impl Bilasala {
         self.bilar.push(b);
     }
 
+    fn prenta_allt(&self) {
+        println!("{}", self);
+        self.verdmaeti();
+    }
+
     fn prenta(&self, gerd: Gerd) {
         for bill in &self.bilar {
-            
+            if bill.gerd == gerd {
+                println!("{}", bill);
+            }
         }
+    }
+
+    // prentar út verðmæti allra skráðra bíla
+    fn verdmaeti(&self) {
+        let mut verdmaeti = 0u32;
+        for bill in &self.bilar {
+            verdmaeti += bill.verd;
+        }
+        let fjoldi_bila = self.bilar.len();
+        let medalverd = verdmaeti as f32 / fjoldi_bila as f32;
+        println!("Fjöldi bíla: {}, heildarverðmæti: {} kr., meðalverð: {:.2} kr.", fjoldi_bila, verdmaeti, medalverd);
     }
 }
 
@@ -100,8 +119,10 @@ impl Display for Bilasala {
 
 fn main() {
     let mut bs = Bilasala::new();
-    bs.skra("toyota", "jeppi", 100000);
+    bs.skra("Toyota", "jeppi", 100000);
+    bs.skra("Jeep", "j", 100000);
     bs.skra2("Volvo", "fb", 200000);
+    bs.skra2("Scania", "annað", 250000);
     
     loop {
         print!("Sláðu inn skipun: ");
@@ -110,7 +131,7 @@ fn main() {
         stdin().read_line(&mut inntak).unwrap();
         let skipanir = inntak.split_whitespace().collect::<Vec<&str>>();
         //let skipanir = inntak.split(' ').collect::<Vec<&str>>();
-        println!("{:?}", skipanir);
+        //println!("{:?}", skipanir);
 
         match skipanir.first() { // .get(4) í stað [4]
             Some(s) => {
@@ -135,7 +156,10 @@ fn main() {
                         bs.skra(framleidandi, gerd, verd);
                     },
                     "prenta" => {
-                        println!("{}", bs);
+                        match skipanir.get(1) {
+                            Some(gerd) => bs.prenta(Gerd::from(*gerd)),
+                            None => bs.prenta_allt(),
+                        }
                     },
                     _ => {
                         println!("skildi ekki skipunina: {}", s);
@@ -148,6 +172,5 @@ fn main() {
                 continue;
             },
         }
-
     }
 }
