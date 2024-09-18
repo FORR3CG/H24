@@ -12,3 +12,5 @@ Pizza samanstendur af botni og áleggjum. Botn getur verið annaðhvort þunnur 
 Útfærðu svo Display, From og annað eftir þörfum.
 
 Skrifaðu svo forrit sem getur búið til pizzur og hafðu notendaviðmótið með svipuðu sniði og í [bílasölunni](../../tímar/bilasala/src/main.rs).
+
+[Lausn á verkefninu](./lausn_klasar_enum_vec/)
