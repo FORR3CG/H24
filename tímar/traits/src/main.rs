@@ -25,6 +25,16 @@ impl Bill {
     }
 }
 
+// let b = bmw + audi;
+
+impl std::ops::Add for Bill {
+    type Output = Bill;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        Bill::new(&self.tegund, &rhs.litur, self.verd + rhs.verd)
+    }
+}
+
 impl TryFrom<&str> for Bill {
     type Error = String;
     // "bmw hvítur 1000"
@@ -42,7 +52,7 @@ impl TryFrom<&str> for Bill {
     }
 }
 
-#[derive(Debug, Eq)]
+#[derive(Debug, Eq, Clone)]
 struct Bill {
     tegund: String,
     litur: String,
@@ -79,6 +89,9 @@ fn main() {
         // hvenær á þetta að vera true???
     }
 
+    let ayota = audi.clone() + toyota.clone();
+    let ayota = audi.clone() + toyota.clone() + ayota.clone();
+    println!("{:?}", ayota);
     bilar.push(audi);
     bilar.push(toyota);
 /*     if audi > toyota {
