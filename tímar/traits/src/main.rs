@@ -43,9 +43,10 @@ impl TryFrom<&str> for Bill {
         if hlutar.len() == 3 {
             let tegund = hlutar.first().unwrap();
             let litur = hlutar.get(1).unwrap();
-            match hlutar.last().unwrap().trim().parse::<u32>() {
-                Ok(verd) => return Ok(Bill::new(tegund, litur, verd)),
-                Err(_) => return Err(format!("Gat ekki breytt {} í tölu!", hlutar.last().unwrap())),
+            if let Ok(verd) = hlutar.last().unwrap().trim().parse::<u32>() {
+                return Ok(Bill::new(tegund, litur, verd))
+            } else {
+                return Err(format!("Gat ekki breytt {} í tölu!", hlutar.last().unwrap()))
             }
         }
         Err("Fékk ekki réttan fjölda orða!!".to_string())
@@ -81,7 +82,32 @@ impl PartialEq for Bill {
     }
 }
 
+struct Bilar {
+    bilar: Vec<Bill>,
+}
+
+impl Bilar {
+    fn new() -> Self {
+        Self {
+            bilar: Vec::new(),
+        }
+    }
+
+    fn skra(&mut self, bill: &str) -> Result<(), String> {
+        self.bilar.push(Bill::try_from(bill)?);
+        Ok(())
+    }
+}
+
 fn main() {
+    let mut b = Bilar::new();
+    loop {
+        if let Err(villa) = b.skra("bmw gulur 2000") {
+            println!("{}, reyndur aftur!", villa);
+            continue;
+        }
+    }
+
     let mut bilar: Vec<Bill> = Vec::new();
     let audi = Bill::try_from("audi gulur 10000").unwrap();
     let toyota = Bill::try_from("audi hvítur 500").unwrap();
