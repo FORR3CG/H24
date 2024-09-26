@@ -100,6 +100,12 @@ impl Bilar {
 }
 
 fn main() {
+    let inntak = "   skrá   bmw    gulur    2000\n".to_string();
+    let (ord, rest) = inntak.trim().split_once(' ').unwrap();
+    println!("f: {}, rest: {}", ord, rest);
+    if let Ok(bb) = Bill::try_from(rest) {
+        println!("{:?}", bb);
+    }
     let mut b = Bilar::new();
     loop {
         if let Err(villa) = b.skra("bmw gulur 2000") {
