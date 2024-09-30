@@ -41,8 +41,15 @@ struct Hundur(String);
 
 struct Kottur(String);
 
+impl Kottur {
+    fn nafn(&self) {
+        println!("{}", self.0)
+    }
+}
+
 trait Hljod {
     fn segir(&self);
+    
 }
 
 impl Hljod for Hundur {
@@ -57,10 +64,30 @@ impl Hljod for Kottur {
     }
 }
 
+fn hvad_segir(dyr: &impl Hljod) {
+    dyr.segir()
+}
+
+fn bua_til_dyr(teg: bool, nafn: &str) -> Box::<dyn Hljod> {
+    if teg {
+        // skila hundi
+        Box::<Hundur>::new(Hundur(nafn.to_string()))
+    } else {
+        // skila ketti
+        Box::new(Kottur(nafn.to_string()))
+    }
+}
+
+
 fn main() {
+    let depill = bua_til_dyr(true, "Depill");
+    depill.segir();
+    //hvad_segir(depill);
     let snati = Hundur("Snati".to_string());
     let grettir = Kottur("Grettir".to_string());
     println!("{}", snati.0);
+    hvad_segir(&snati);
+    hvad_segir(&grettir);
     snati.segir();
     grettir.segir();
     let f = Ferhyrningur {lengd: 10f32, breidd: 15f32};
