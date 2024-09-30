@@ -37,6 +37,35 @@ trait Form {
     }
 }
 
+struct Hundur(String);
+
+struct Kottur(String);
+
+trait Hljod {
+    fn segir(&self);
+}
+
+impl Hljod for Hundur {
+    fn segir(&self) {
+        println!("Voff")
+    }
+}
+
+impl Hljod for Kottur {
+    fn segir(&self) {
+        println!("Mjá")
+    }
+}
+
 fn main() {
-    println!("Hello, world!");
+    let snati = Hundur("Snati".to_string());
+    let grettir = Kottur("Grettir".to_string());
+    println!("{}", snati.0);
+    snati.segir();
+    grettir.segir();
+    let f = Ferhyrningur {lengd: 10f32, breidd: 15f32};
+    let h = Hringur { radius: 5f32 };
+    println!("fh: fm: {}, um: {}", f.flatarmal(), f.ummal());
+    f.nafn();
+    println!("hr: fm: {}, um: {}", h.flatarmal(), h.ummal());
 }
