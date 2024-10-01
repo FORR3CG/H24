@@ -1,4 +1,5 @@
 use std::fmt::Display;
+use std::any::Any;
 
 struct Hundur {
     nafn: String,
@@ -48,6 +49,14 @@ impl Dyr for Hundur {
     fn upplysingar(&self) -> String {
         self.to_string()
     }
+
+    fn as_any(&self) -> &dyn Any {
+        self
+    }
+
+    fn tegund(&self) -> String {
+        "Hundur".to_string()
+    }
 }
 
 impl Dyr for Kottur {
@@ -58,11 +67,21 @@ impl Dyr for Kottur {
     fn upplysingar(&self) -> String {
         self.to_string()
     }
+
+    fn as_any(&self) -> &dyn Any {
+        self
+    }
+
+    fn tegund(&self) -> String {
+        "Köttur".to_string()
+    }
 }
 
 trait Dyr {
     fn prenta_nafn(&self);
     fn upplysingar(&self) -> String;
+    fn as_any(&self) -> &dyn Any;
+    fn tegund(&self) -> String;
 }
 
 struct Dyragardur {
@@ -89,8 +108,20 @@ impl Dyragardur {
             println!("{}", d.upplysingar())
         }
     }
+
+    fn prenta_ketti(&self) {
+        for d in self.dyrin.iter() {
+            if let Some(kottur) = d.as_any().downcast_ref::<Kottur>() {
+                println!("{}", kottur)
+            }
+        }
+    }
 }
 
 fn main() {
-    println!("Hello, world!");
+    let mut dg = Dyragardur::new();
+    dg.skra_hund(Hundur::new("Snati", 58));
+    dg.skra_kott(Kottur::new("Grettir", 8));
+    dg.prenta_allt();
+    dg.prenta_ketti();
 }
