@@ -124,12 +124,18 @@ impl Dyragardur {
             }
         }
     }
+
+    
+    fn skra_dyr(&mut self, dyr: Box::<dyn Dyr>) {
+        self.dyrin.push(dyr);
+    }
 }
 
 fn main() {
     let mut dg = Dyragardur::new();
     let h = Hundur::new("abc", 99);
-    println!("{}", h);
+    dg.skra_dyr(Box::new(h));
+    //println!("{}", &h);
     dg.skra_hund(Hundur::new("Snati", 58));
     dg.skra_kott(Kottur::new("Grettir", 8));
     dg.prenta_allt();
