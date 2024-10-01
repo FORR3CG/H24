@@ -77,7 +77,7 @@ impl Dyr for Kottur {
     }
 }
 
-trait Dyr {
+trait Dyr : Display {
     fn prenta_nafn(&self);
     fn upplysingar(&self) -> String;
     fn as_any(&self) -> &dyn Any;
@@ -116,10 +116,20 @@ impl Dyragardur {
             }
         }
     }
+
+    fn prenta_tegund(&self, tegund: &str) {
+        for d in self.dyrin.iter() {
+            if d.tegund() == tegund {
+                println!("{}", d)
+            }
+        }
+    }
 }
 
 fn main() {
     let mut dg = Dyragardur::new();
+    let h = Hundur::new("abc", 99);
+    println!("{}", h);
     dg.skra_hund(Hundur::new("Snati", 58));
     dg.skra_kott(Kottur::new("Grettir", 8));
     dg.prenta_allt();
