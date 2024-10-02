@@ -39,7 +39,7 @@ Við mat á verkefninu er horft til eftirfarandi (ekki tæmandi listi):
 
 ## Skil verkefnisins
 
-Verkefnið á að skilast í síðasta lagi á miðnætti laugardaginn 12. mars. Ekki verður hægt að fá lengri frest.
+Verkefnið á að skilast í síðasta lagi á miðnætti laugardaginn 12. október. Ekki verður hægt að fá lengri frest.
 
 ## Verkefnið
 
