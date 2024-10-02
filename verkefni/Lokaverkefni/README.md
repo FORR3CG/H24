@@ -1,6 +1,6 @@
 # FORR3CG Haust 2024 - Lokaverkefni (20%)
 
-Áður en lengra er haldið skalt þú stofna nýtt **private** repo á github og bjóða *gestskoli* inn sem samstarfsaðila. Farðu svo inn á Innu og skila slóðinni að repo-inu í annaðhvort **Lokaverkefni** skilahólfið.
+Áður en lengra er haldið skalt þú stofna nýtt **private** repo á github og bjóða *gestskoli* inn sem samstarfsaðila. Farðu svo inn á Innu og skila slóðinni að repo-inu í **Lokaverkefni** skilahólfið.
 
   - [Almennar reglur varðandi verkefnið](#almennar-reglur-varðandi-verkefnið)
     - [Skýrsla](#skýrsla)
