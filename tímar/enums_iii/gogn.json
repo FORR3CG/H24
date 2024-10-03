@@ -2,7 +2,7 @@
   "dyrin": [
     {
       "Hundurinn": {
-        "nafn": "Snati",
+        "name": "Snati",
         "hlydnieinkunn": 58
       }
     },
@@ -12,5 +12,6 @@
         "aldur": 9
       }
     }
-  ]
+  ],
+  "upphafs_id": 100
 }

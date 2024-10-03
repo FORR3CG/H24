@@ -9,6 +9,7 @@ use std::io::{Read, Write};
 
 #[derive(Deserialize, Serialize)]
 struct Hundur {
+    #[serde(rename="name")]
     nafn: String,
     hlydnieinkunn: u32,
 }
@@ -71,11 +72,12 @@ impl Display for Dyr {
 #[derive(Deserialize, Serialize)]
 struct Dyragardur {
     dyrin: Vec<Dyr>,
+    upphafs_id: u32,
 }
 
 impl Dyragardur {
     fn new() -> Self {
-        Self { dyrin: Vec::new() }
+        Self { dyrin: Vec::new(), upphafs_id: 150 }
     }
 
     fn skra_hund(&mut self, hundur: Hundur) {
