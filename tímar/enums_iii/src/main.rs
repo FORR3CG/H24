@@ -1,5 +1,13 @@
-use std::fmt::Display;
+/*
+setja inn serde + derive með eftirfarandi: cargo add serde -F derive
+setja líka inn serde_json með eftirfarandi: cargo add serde_json
+*/
 
+use std::fmt::Display;
+use serde::{Deserialize, Serialize};
+use std::io::{Read, Write};
+
+#[derive(Deserialize, Serialize)]
 struct Hundur {
     nafn: String,
     hlydnieinkunn: u32,
@@ -24,6 +32,7 @@ impl Display for Hundur {
     }
 }
 
+#[derive(Deserialize, Serialize)]
 struct Kottur {
     nafn: String,
     aldur: u8,
@@ -44,6 +53,7 @@ impl Display for Kottur {
     }
 }
 
+#[derive(Deserialize, Serialize)]
 enum Dyr {
     Hundurinn(Hundur),
     Kotturinn(Kottur),
@@ -58,6 +68,7 @@ impl Display for Dyr {
     }
 }
 
+#[derive(Deserialize, Serialize)]
 struct Dyragardur {
     dyrin: Vec<Dyr>,
 }
@@ -120,9 +131,29 @@ fn main() {
     let mut dg = Dyragardur::new();
     let h = Hundur::new("abc", 99);
     println!("{}", h);
+    let json_hundur = serde_json::to_string(&h).unwrap();
+    println!("{}", json_hundur);
     dg.skra_hund(Hundur::new("Snati", 58));
     dg.skra_kott(Kottur::new("Grettir", 8));
     dg.prenta_tegund("hundar");
     dg.haekka_aldur();
     dg.prenta_allt();
+    
+    // búa til json streng út frá lista structinu
+    let json_listinn = serde_json::to_string_pretty(&dg).unwrap();
+    // skrifa í skrá
+    let mut skra = std::fs::File::create("gogn.json").unwrap();
+    write!(skra, "{}", json_listinn);
+
+    println!("{}", json_listinn);
+    // lesa json frá skrá
+    let mut skra = std::fs::File::open("gogn.json").unwrap();
+    let mut inntak = String::new();
+    skra.read_to_string(&mut inntak).unwrap();
+    println!("Dýragarður 2 -------------------------");
+    let mut dg2 = serde_json::from_str::<Dyragardur>(&inntak).unwrap();
+    dg2.prenta_allt();
+
+
+
 }
