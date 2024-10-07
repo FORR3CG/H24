@@ -156,6 +156,8 @@ fn main() {
     let mut dg2 = serde_json::from_str::<Dyragardur>(&inntak).unwrap();
     dg2.prenta_allt();
 
+    let k = vec![1,2,3];
+
 
 
 }
